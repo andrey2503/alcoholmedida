@@ -16,3 +16,8 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::get('/tipos_licor','TipoLicorController@tipos_licor');
+Route::get('/licores','LicorController@licores');
+
+
