@@ -89,5 +89,7 @@ class TipoLicorController extends Controller
         return TipoLicor::all();
     }// fin de tipos_licor
 
+   
+
 
 }
