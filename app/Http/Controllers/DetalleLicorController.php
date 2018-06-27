@@ -82,4 +82,9 @@ class DetalleLicorController extends Controller
     {
         //
     }
+
+    public function licor_detalle($id){
+        return DetalleLicor::where('fk_licor','=',$id)->get();
+    }// fin de la funcion licor_detalle
+
 }

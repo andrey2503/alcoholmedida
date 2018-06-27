@@ -20,6 +20,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::get('/tipos_licor','TipoLicorController@tipos_licor');
 Route::get('/licores','LicorController@licores');
 Route::get('/licor/{id}','LicorController@licor');
+Route::get('/licor_detalle/{id}','DetalleLicorController@licor_detalle');
 Route::post('/agregarLicor','LicorController@agregarLicor');
 
 
