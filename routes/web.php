@@ -11,6 +11,29 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Auth::routes();
+
+//rutas accessibles slo si el usuario no se ha logueado
+    
+  Route::post('login', ['as' =>'login', 'uses' => 'Auth\LoginController@postLogin']);
+      Route::get('/', function () {
+        return view('auth.login');
+      });
+    Route::get('/login', function () {
+      return view('auth.login');
+      });
+  Route::get('/user', 'Auth\LoginController@iniciarUsuarioAdmin');
+
+
+Route::group(['middleware' => ['auth']], function () {
+    Route::get('/administrador','AdminController@index');
+    Route::get('/salir','AdminController@getLogout');
+    Route::get('/modificarUsuario/{id}','AdminController@show');
+
+    
+    
 });
+
+
+
+

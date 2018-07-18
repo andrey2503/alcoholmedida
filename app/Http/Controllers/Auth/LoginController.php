@@ -4,6 +4,10 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Http\Request;
+use App\User;
+use Hash;
+
 
 class LoginController extends Controller
 {
@@ -36,4 +40,31 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
     }
+
+    public function postLogin(Request $request)
+    {
+     $this->validate($request, [
+         'email' => 'required',
+         'password' => 'required',
+     ]);
+    if (\Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
+        $usuarioactual=\Auth::user();
+        // dd("dooooooo");
+        return redirect('/administrador');
+     }
+     return redirect('/login');
+     }
+
+    public function iniciarUsuarioAdmin(){
+        $user = new User();
+        $user->name="Andrey Torres Vega";
+        $user->email = "admin@admin.com";
+        // $user->user="admin";
+        // $user->idrol = 1;
+        $user->password = Hash::make('admin');
+        // $user->state=1;
+        $user->save();
+        }//fin de iniciarUsuarioAdmin
+
+   
 }
