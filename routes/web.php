@@ -29,7 +29,9 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/administrador','AdminController@index');
     Route::get('/salir','AdminController@getLogout');
     Route::get('/modificarUsuario/{id}','AdminController@show');
-
+    Route::post('/modificarUsuario','AdminController@update');
+    
+    
     
     
 });

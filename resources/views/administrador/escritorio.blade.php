@@ -131,7 +131,7 @@
             
            
             <li>
-              <a href="{{ URL::asset('/') }}">
+              <a href="{{ URL::asset('/administrador') }}">
               <i class="fa fa-dashboard"></i> <span>Escritorio</span> <i class="fa fa-angle-left pull-right"></i>
                  <small class="label pull-right bg-blue">
                    <span class="glyphicon glyphicon-home"></span>

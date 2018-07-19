@@ -11,7 +11,7 @@
                       </div>
                   @endif
       </div><!-- /.box-header -->
-      <form  role="form"   method="post"  action="{{ url('admin/modificarUsuario') }}" class="form-horizontal form_entrada" >
+      <form  role="form"   method="post"  action="{{ url('modificarUsuario') }}" class="form-horizontal form_entrada" >
 
       <input type="hidden" name="id" value="{{ $usuario->id }}">
       

@@ -45,6 +45,13 @@ class AdminController extends Controller
      */
     public function store(Request $request)
     {
+        $this->validate($request,[
+            'nombre'=>'required',
+            'email'=>'required|unique:users',
+            'idrol'=>'required',
+            'contrasena'=>'required',
+            'estado'=>'required',
+            ]);
         //
     }
 
@@ -79,8 +86,31 @@ class AdminController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
+        $this->validate($request,[
+            'nombre'=>'required',
+            'mail'=>'required',
+            'idrol'=>'required',
+            'contrasena'=>'required',
+            'estado'=>'required',
+            ]);
+
+        $user = User::find($request->id);
+        $user->name=$request->nombre;
+        $user->email = $request->mail;
+        $user->idrol = $request->idrol;
+        if($user->password!=$request->contrasena){
+            $contrasena=$request->contrasena;
+            $user->password = Hash::make($contrasena);    
+        }
+        $user->state=$request->estado;
+
+        if($user->save()){
+            return redirect()->back()->with('message','Usuario '.$request->usuario.' actualizado correctamente');
+        }else{
+            return redirect('/');
+        }
         //
     }
 
